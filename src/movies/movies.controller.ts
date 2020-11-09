@@ -14,7 +14,7 @@ export class MoviesController {
 
 
     @Get("/:id")
-    getOne(@Param("id") movieId: string){
+    getOne(@Param("id") movieId: number){
         return this.moviesSeervice.getOne(movieId)
         
     }
@@ -25,16 +25,13 @@ export class MoviesController {
     }
 
     @Delete("/:id")
-    remove(@Param("id") movieId: string ){
+    remove(@Param("id") movieId: number ){
         return this.moviesSeervice.deleteOne(movieId)
     }
 
     @Patch("/:id")
-    pathc(@Param("id") movieId: string,@Body() updateData ){
-        return {
-            updataMovie: movieId,
-            ...updateData,
-        }
+    pathc(@Param("id") movieId: number,@Body() updateData ){
+        return this.moviesSeervice.update(movieId, updateData)
     }
 
     
